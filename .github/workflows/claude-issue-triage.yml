@@ -23,7 +23,6 @@ jobs:
       id-token: write
     env:
       ISSUE_NUMBER: ${{ github.event.issue.number }}
-      DIAGNOSIS_FILE: ${{ runner.temp }}/diagnosis.md
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -70,6 +69,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
+          DIAGNOSIS_FILE: ${{ runner.temp }}/diagnosis.md
         run: |
           if [ ! -s "$DIAGNOSIS_FILE" ]; then
             echo "No se generó diagnóstico; nada que publicar."
